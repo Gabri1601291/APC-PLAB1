@@ -239,7 +239,6 @@ print("R2 score: ", r2)
 
 # In[108]:
 
-
 x = dades[:,:]
 y = dades[:,0]
 x = standarize(x)
@@ -248,21 +247,25 @@ x_train, y_train, x_val, y_val = split_data(x, y)
 
 y_train = y_train.reshape(y_train.shape[0], 1)
 
-for i in range(1,len(atrs)):
-    atribut1 = (x_train[:,i].reshape(x_train.shape[0], 1)) 
-    regr = regression(atribut1, y_train) 
-    predicted = regr.predict(atribut1)
+for i in range(1, len(atrs)):
+    x_t = x_train[:,i] # seleccionem atribut i en conjunt de train
+    x_v = x_val[:,i] # seleccionem atribut i en conjunt de val.
+    x_t = np.reshape(x_t,(x_t.shape[0],1))
+    x_v = np.reshape(x_v,(x_v.shape[0],1))
+
+    regr = regression(x_t, y_train)    
+    
 
     # Mostrem la predicció del model entrenat en color vermell a la Figura anterior 1
     
     plt.figure()
     plt.title(atrs[i])
-    ax = plt.scatter(x[:,i], y)
-    plt.plot(atribut1[:,0], predicted, 'r')
+    ax = plt.scatter(x_v, y_val)
+    plt.plot(x_v, regr.predict(x_v), 'r')
     
     # Mostrem l'error (MSE i R2)
-    MSE = mse(y_train, predicted)
-    r2 = r2_score(y_train, predicted)
+    MSE = mse(y_val, regr.predict(x_v)) # calculem error
+    r2 = r2_score(y_val, regr.predict(x_v))
     print("Salary vs " + atrs[i])
     print("Mean squeared error: ", MSE)
     print("R2 score: ", r2)
