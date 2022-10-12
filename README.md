@@ -1,5 +1,4 @@
-# APC-PLAB1
-DOCUMENTOS DE LA PLAB1 DE APC  
+# APC-PLAB1  
 Al nostre repositori trobarem tots els documents que hem utilitzat i modificat per poder treballar la nostre pràctica, aquests serien:
 1. **HRDataset_v14.csv** : Base de dades de la nostre pràctica.
 1. **Practica1-Regressio2022-GEI.ipynb** : Enunciat de la pràctica que no vam modificar per poder seguir-lo com a pauta.
